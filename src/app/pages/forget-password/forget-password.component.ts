@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-forget-password',
@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.scss']
 })
-export class ForgetPasswordComponent {
+export default class ForgetPasswordComponent {
 
 }
