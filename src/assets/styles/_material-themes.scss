@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+@use "./material-colors" as colors;
+@include mat.core();
+$commom-primary: mat.define-palette(colors.$blue-palette, 850);
+
+$commom-accent: mat.define-palette(colors.$red-palette, 350);
+$commom-warn: mat.define-palette(mat.$red-palette);
+$commom-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $commom-primary,
+      accent: $commom-accent,
+      warn: $commom-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($commom-theme);
