@@ -1,7 +1,9 @@
-<div class="w-full max-w-lg mt-10 p-8 bg-white shadow-lg rounded-lg mx-auto">
+<div
+  class="w-full max-w-lg mt-4 px-8 py-6 my-auto bg-white shadow-lg rounded-lg mx-auto"
+>
   <h3 class="text-3xl text-center text-red-400 font-semibold mb-6">Cadastro</h3>
-  <form [formGroup]="registerForm" class="w-full flex flex-col space-y-4">
-    <div class="flex flex-col">
+  <form [formGroup]="registerForm" class="lg:w-full flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field appearance="fill">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="firstName" />
@@ -11,7 +13,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field appearance="fill">
         <mat-label>Sobrenome</mat-label>
         <input matInput placeholder="Sobrenome" formControlName="lastName" />
@@ -21,7 +23,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field class="w-full" appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" formControlName="email" />
@@ -34,7 +36,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field class="w-full" appearance="fill">
         <mat-label>Usuário</mat-label>
         <input matInput placeholder="Usuário" formControlName="userName" />
@@ -44,7 +46,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field>
         <mat-label>Senha</mat-label>
         <input
@@ -66,7 +68,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-4">
       <mat-form-field>
         <mat-label>Confirmar Senha</mat-label>
         <input
@@ -90,11 +92,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <button
-      class="bg-red-400 p-2 rounded mt-3 text-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-600"
-      [disabled]="!registerForm.valid"
-      (click)="register()"
-    >
+    <button mat-flat-button color="accent" >
       Enviar
     </button>
   </form>
