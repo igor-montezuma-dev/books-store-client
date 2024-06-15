@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import AuthService from 'src/app/services/auth.service';
+import { PasswordValidator } from '../../validators/confirm-password-validator';
 
 @Component({
   selector: 'app-register',
@@ -20,38 +23,34 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export default class RegisterComponent implements OnInit{
-
+export default class RegisterComponent implements OnInit {
+  fb = inject(FormBuilder);
+  snackBar = inject(MatSnackBar);
   registerForm!: FormGroup;
   public hide = true;
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  // public registerForm: FormGroup = new FormGroup({
-  //   firstName: new FormControl('', Validators.required),
-  //   lastName: new FormControl('', Validators.required),
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   userName: new FormControl('', Validators.required),
-  //   password: new FormControl('', Validators.required),
-  //   confirmPassword: new FormControl('', Validators.required),
-  // });
+  AuthService = inject(AuthService);
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: this.mustMatch('password', 'confirmPassword')
-    });
+    this.registerForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        userName: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: PasswordValidator('password', 'confirmPassword'),
+      }
+    );
   }
 
   mustMatch(controlName: string, matchingControlName: string) {
@@ -73,15 +72,22 @@ export default class RegisterComponent implements OnInit{
 
   register() {
     const credentials = this.registerForm.value;
-    this.verifyPassword();
+    this.AuthService.registerService(credentials).subscribe({
+      next: (response) => {
+        this.snackBar.open('Usuário cadastrado com sucesso', 'fechar', {
+          duration: 3000,
+        });
+        this.registerForm.reset();
+      },
+      error: (error) => {
+        this.snackBar.open('Erro ao realizar cadastro', 'fechar', {
+          duration: 3000,
+        });
+        console.error(error);
+        console.error(error);
+      },
+    });
 
     console.log(credentials);
-  }
-
-  verifyPassword() {
-    const password = this.registerForm.get('password')?.value;
-    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
-
-    return password === confirmPassword;
   }
 }
