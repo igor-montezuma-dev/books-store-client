@@ -13,12 +13,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register.component'),
   },
   {
-    path: 'esqueci-a-senha',
+    path: 'recuperar-senha',
     loadComponent: () =>
       import('./pages/forget-password/forget-password.component'),
   },
   {
-    path: 'alterar-senha',
+    path: 'reset/:token',
     loadComponent: () =>
       import('./pages/reset-password/reset-password.component'),
   },
