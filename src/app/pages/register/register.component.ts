@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router, RouterModule } from '@angular/router';
 import AuthService from 'src/app/services/auth.service';
 import { PasswordValidator } from '../../validators/confirm-password-validator';
 
@@ -25,6 +26,7 @@ import { PasswordValidator } from '../../validators/confirm-password-validator';
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
+    RouterModule,
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
@@ -32,6 +34,7 @@ import { PasswordValidator } from '../../validators/confirm-password-validator';
 export default class RegisterComponent implements OnInit {
   fb = inject(FormBuilder);
   snackBar = inject(MatSnackBar);
+  router = inject(Router);
   registerForm!: FormGroup;
   public hide = true;
 
@@ -53,23 +56,6 @@ export default class RegisterComponent implements OnInit {
     );
   }
 
-  mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-        return;
-      }
-
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-  }
-
   register() {
     const credentials = this.registerForm.value;
     this.AuthService.registerService(credentials).subscribe({
@@ -77,6 +63,7 @@ export default class RegisterComponent implements OnInit {
         this.snackBar.open('Usuário cadastrado com sucesso', 'fechar', {
           duration: 3000,
         });
+        this.router.navigate(['login']);
         this.registerForm.reset();
       },
       error: (error) => {
@@ -84,10 +71,7 @@ export default class RegisterComponent implements OnInit {
           duration: 3000,
         });
         console.error(error);
-        console.error(error);
       },
     });
-
-    console.log(credentials);
   }
 }

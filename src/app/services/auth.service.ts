@@ -13,4 +13,8 @@ export default class AuthService {
   registerService(registerObj: any){
     return this.http.post<any>(`${this.baseUrl}user-register`, registerObj);
   }
+
+  loginService(loginObj: any){
+    return this.http.post<any>(`${this.baseUrl}login`, loginObj);
+  }
 }
