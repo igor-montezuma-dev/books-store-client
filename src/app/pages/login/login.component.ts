@@ -37,7 +37,7 @@ export default class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   public hide = true;
 
-  AuthService = inject(AuthService);
+  authService = inject(AuthService);
 
 
   ngOnInit() {
@@ -49,11 +49,13 @@ export default class LoginComponent implements OnInit {
 
   login() {
     const credentials = this.loginForm.value;
-    this.AuthService.loginService(credentials).subscribe({
+    this.authService.loginService(credentials).subscribe({
       next: (response) => {
         this.snackBar.open('login efetuado com sucesso!', 'fechar', {
           duration: 3000,
         });
+        localStorage.setItem('user_id', response.data._id);
+        this.authService.isLoggedIn$.next(true);
         this.router.navigate(['home']);
         this.loginForm.reset();
       },

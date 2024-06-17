@@ -7,6 +7,7 @@
     </div>
     <div
       class="search relative flex items-center w-full md:w-auto mb-4 md:mb-0"
+      *ngIf="isLoggedIn"
     >
       <span class="absolute pl-3 text-gray-500">
         <i class="fa fa-search"></i>
@@ -19,23 +20,33 @@
       <button class="bg-red-400 p-2 rounded-r-md text-white">Buscar</button>
     </div>
     <div class="hidden md:flex space-x-6">
-      <a
-        [routerLink]="['/login']"
-        class="text-gray-100 hover:text-gray-300 font-bold"
-        >Login</a
-      >
-      <a
-        [routerLink]="['/cadastro']"
-        class="text-gray-100 hover:text-gray-300 font-bold"
-        >Cadastre-se</a
-      >
-      <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
-        >Carrinho</a
-      >
-      <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
-        >Bem vindo</a
-      >
-      <a href="#" class="text-gray-100 hover:text-gray-300 font-bold">Sair</a>
+      <ng-container *ngIf="!isLoggedIn">
+        <a
+          [routerLink]="['/login']"
+          class="text-gray-100 hover:text-gray-300 font-bold"
+          >Login</a
+        >
+        <a
+          [routerLink]="['/cadastro']"
+          class="text-gray-100 hover:text-gray-300 font-bold"
+          >Cadastre-se</a
+        >
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
+          >Carrinho</a
+        >
+        <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
+          >Bem vindo</a
+        >
+        <a
+          [routerLink]="['/login']"
+          class="text-gray-100 hover:text-gray-300 font-bold"
+          (click)="logout()"
+          >Sair</a
+        >
+      </ng-container>
     </div>
     <div class="md:hidden">
       <button class="text-gray-100 focus:outline-none">
