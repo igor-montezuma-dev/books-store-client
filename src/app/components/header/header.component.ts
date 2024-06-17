@@ -13,10 +13,17 @@ import AuthService from 'src/app/services/auth.service';
 export default class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   isLoggedIn: boolean = false;
+  userName!: string;
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((value) => {
       this.isLoggedIn = this.authService.isLoggedIn();
+    });
+
+    this.authService.getUser().subscribe(user => {
+      if (user) {
+        this.userName = user.userName;
+      }
     });
   }
 

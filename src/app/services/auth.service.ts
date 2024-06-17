@@ -9,6 +9,7 @@ export default class AuthService {
 
   http = inject(HttpClient);
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  private userSubject = new BehaviorSubject<any>(null);
 
   baseUrl = 'http://localhost:3000/api/auth/';
 
@@ -26,6 +27,14 @@ export default class AuthService {
 
   resetPasswordService(resetObj: any) {
     return this.http.post<any>(`${this.baseUrl}reset-password`, resetObj);
+  }
+
+  setUser(user: any) {
+    this.userSubject.next(user);
+  }
+
+  getUser() {
+    return this.userSubject.asObservable();
   }
 
   isLoggedIn(){
