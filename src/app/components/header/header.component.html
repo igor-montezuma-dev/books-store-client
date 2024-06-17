@@ -49,7 +49,7 @@
       </ng-container>
     </div>
     <div class="md:hidden">
-      <button class="text-gray-100 focus:outline-none">
+      <button class="text-gray-100 focus:outline-none" (click)="toggleMenu()">
         <svg
           class="w-6 h-6"
           fill="none"
@@ -66,5 +66,34 @@
         </svg>
       </button>
     </div>
+  </div>
+  <div *ngIf="showMenu" class="md:hidden">
+    <ng-container *ngIf="!isLoggedIn">
+      <a
+        [routerLink]="['/login']"
+        class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        >Login</a
+      >
+      <a
+        [routerLink]="['/cadastro']"
+        class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        >Cadastre-se</a
+      >
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+      <a href="#" class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        >Carrinho</a
+      >
+      <a href="#" class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        >Bem vindo {{ userName }}</a
+      >
+      <a
+        [routerLink]="['/login']"
+        class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        (click)="logout()"
+        >Sair</a
+      >
+    </ng-container>
   </div>
 </nav>

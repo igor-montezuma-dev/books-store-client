@@ -14,6 +14,7 @@ export default class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   isLoggedIn: boolean = false;
   userName!: string;
+  showMenu: boolean = false;
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((value) => {
@@ -25,6 +26,10 @@ export default class HeaderComponent implements OnInit {
         this.userName = user.userName;
       }
     });
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 
   logout() {
