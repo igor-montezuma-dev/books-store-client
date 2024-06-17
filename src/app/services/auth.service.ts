@@ -11,7 +11,10 @@ export default class AuthService {
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private userSubject = new BehaviorSubject<any>(null);
 
-  baseUrl = 'https://book-store-api-zpwr.onrender.com/api/auth/';
+  development = 'http://localhost:3000/api/auth/';
+  production = 'https://book-store-api-zpwr.onrender.com/api/auth/'
+
+  baseUrl = this.production;
 
   registerService(registerObj: any) {
     return this.http.post<any>(`${this.baseUrl}user-register`, registerObj);
