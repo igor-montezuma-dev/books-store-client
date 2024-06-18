@@ -34,11 +34,18 @@
       </ng-container>
 
       <ng-container *ngIf="isLoggedIn">
-        <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
+        <a
+          routerLink="/carrinho"
+          class="text-gray-100 hover:text-gray-300 font-bold"
+          [matBadge]="total"
+          matBadgeOverlap="false"
+          matBadgeColor="accent"
           >Carrinho</a
         >
-        <a href="#" class="text-gray-100 hover:text-gray-300 font-bold"
-          >Bem vindo {{ userName }}</a
+        <a
+          routerLink="/home"
+          class="text-gray-100 hover:text-gray-300 font-bold"
+          >Bem vindo</a
         >
         <a
           [routerLink]="['/login']"
@@ -82,11 +89,18 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">
-      <a href="#" class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+      <a
+        routerLink="/carrinho"
+        class="block text-gray-100 hover:text-gray-300 font-bold p-2 mr-6"
+        [matBadge]="total"
+        matBadgeOverlap="false"
+        matBadgeColor="accent"
         >Carrinho</a
       >
-      <a href="#" class="block text-gray-100 hover:text-gray-300 font-bold p-2"
-        >Bem vindo {{ userName }}</a
+      <a
+        routerLink="/home"
+        class="block text-gray-100 hover:text-gray-300 font-bold p-2"
+        >Bem vindo</a
       >
       <a
         [routerLink]="['/login']"

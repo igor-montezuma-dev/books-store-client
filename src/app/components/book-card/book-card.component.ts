@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 import { Book } from 'src/app/types/book.type';
 
 @Component({
@@ -11,4 +13,12 @@ import { Book } from 'src/app/types/book.type';
 })
 export default class BookCardComponent {
   @Input({ required: true }) book!: Book;
+
+  cartService = inject(CartService);
+  booksService = inject(BookService);
+
+  addToCart(item: any){
+    this.cartService.addToCart(this.book);
+    console.log(this.book);
+  }
 }
