@@ -14,7 +14,7 @@ export default class AuthService {
   development = 'http://localhost:3000/api/auth/';
   production = 'https://book-store-api-zpwr.onrender.com/api/auth/'
 
-  baseUrl = 'https://book-store-api-zpwr.onrender.com/api/auth/';
+  baseUrl = this.production;
 
   registerService(registerObj: any) {
     return this.http.post<any>(`${this.baseUrl}user-register`, registerObj);

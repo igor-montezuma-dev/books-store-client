@@ -21,4 +21,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/reset-password/reset-password.component'),
   },
+  {
+    path:'carrinho',
+    loadComponent: () => import('./pages/cart/cart.component')
+  }
 ];
