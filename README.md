@@ -8,7 +8,7 @@ Este projeto é uma aplicação web de livros desenvolvida em Angular. Ele inclu
 - **Alterar Senha**: Permite que o usuário altere sua senha.
 - **Listagem de Livros**: Exibe uma lista de livros disponíveis.
 - **Carrinho de Compras**: Permite adicionar e remover livros de um carrinho de compras.
-- - **Consumo de APi: Todos os dados apresentados na aplicação são consumidos de uma api de autoria própria.
+- **Consumo de APi: Todos os dados apresentados na aplicação são consumidos de uma api de autoria própria.
 
 ## Tecnologias Utilizadas
 
