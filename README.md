@@ -1,27 +1,18 @@
 # BookStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+Este projeto é uma aplicação web de livros desenvolvida em Angular. Ele inclui funcionalidades de login, alteração de senha, listagem de livros e gerenciamento de carrinhos. A aplicação utiliza intensivamente os principais conceitos do RxJS, incluindo `BehaviorSubject`.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Login**: Autenticação de usuários.
+- **Alterar Senha**: Permite que o usuário altere sua senha.
+- **Listagem de Livros**: Exibe uma lista de livros disponíveis.
+- **Carrinho de Compras**: Permite adicionar e remover livros de um carrinho de compras.
+- - **Consumo de APi: Todos os dados apresentados na aplicação são consumidos de uma api de autoria própria.
 
-## Code scaffolding
+## Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Angular**: Framework principal para desenvolvimento.
+- **RxJS**: Biblioteca para programação reativa.
+- **BehaviorSubject**: Utilizado para gerenciar e compartilhar estados reativos.
+- **TypeScript**: Linguagem principal do desenvolvimento Angular.
